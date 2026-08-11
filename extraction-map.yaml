@@ -1,0 +1,753 @@
+# Extraction map — classifies EVERY file in the reference read scope. Human-authored; the join is mechanical
+# (doctor --compare joins mechanism-ids against the canonical catalog). An entry classified mechanism with
+# no mechanism-ids is a declared GAP, never a silently disappearing file.
+reference:
+  repo: staffezee (private reference corpus)
+  branch: origin/dev
+  sha: b444f93efa24f4a6c20509d52e9c448775ef3760
+  pinned-on: 2026-10-03
+  read-scope-count: 78
+classifications:
+  mechanism: generic practice extracted into canonical/
+  project: instance data; form may inform a role, content never extracted
+  hybrid: mixed; source-sections names the mechanism parts at section granularity
+  excluded: out of scope by the spec
+entries:
+  - source-path: ".claude/agents/README.md"
+    source-blob-sha: b7bc347d57c5184eac246ceb39abb22a26e0baa0
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - governance.oracle-integrity
+      - ledger.run-journal
+      - harness.self-verification
+    source-sections:
+      - 1. The three layers
+      - "3. How to run things — BINDING RULE agentType"
+      - 3. FRONTMATTER TRAP
+      - 4. The Handoff Block
+      - 5. Review gates, escalation, and conflict rules
+      - 6. Global rules digest
+      - 7. Maintaining this system
+    reason: "operating manual: layer model, dispatch binding, handoff contract, escalation ladder and maintenance protocol are mechanism; the 16 named agents, workflows and counts are project"
+  - source-path: ".claude/agents/architect-review.md"
+    source-blob-sha: d7eb4ca6a19a76fb4e19912110e15e8bc3284757
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - harness.self-verification
+    source-sections:
+      - Load first
+      - Procedure
+      - Evidence standard
+      - Handoff
+      - Route instead
+      - Solo / subagent / workflow behavior
+    reason: "generic reviewer role shape (block-scalar description fix) → architect/reviewer roles; product review content project"
+  - source-path: ".claude/agents/code-reviewer.md"
+    source-blob-sha: 45140d04902c06aa99dbacd9edd69b0dbcc46e91
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - harness.self-verification
+    source-sections:
+      - Load first
+      - Procedure
+      - Evidence standard
+      - Handoff
+      - Route instead
+      - Solo / subagent / workflow behavior
+    reason: "fresh-context read-only reviewer → reviewer role; checklist content project"
+  - source-path: ".claude/agents/staffezee-archaeologist.md"
+    source-blob-sha: b9c8ead15e37c2f218a673f4c0d82079c95f1cdc
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - harness.self-verification
+    source-sections:
+      - Load first
+      - Procedure
+      - Evidence standard
+      - Handoff
+      - Route instead
+      - Solo / subagent / workflow behavior
+    reason: "specialist role → generic archaeologist role: skeleton (load-first, procedure, evidence, handoff, route-instead, modes) is mechanism; product facts and provenance footers are project"
+  - source-path: ".claude/agents/staffezee-architect.md"
+    source-blob-sha: ffab9bba9305807667c2a44a2c3e815a815e5192
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - harness.self-verification
+    source-sections:
+      - Load first
+      - Procedure
+      - Evidence standard
+      - Handoff
+      - Route instead
+      - Solo / subagent / workflow behavior
+    reason: "specialist role → generic architect role: skeleton (load-first, procedure, evidence, handoff, route-instead, modes) is mechanism; product facts and provenance footers are project"
+  - source-path: ".claude/agents/staffezee-diagnostician.md"
+    source-blob-sha: b26949dcaffd84f8a9ebdc0f33eefae28351eb33
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - harness.self-verification
+    source-sections:
+      - Load first
+      - Procedure
+      - Evidence standard
+      - Handoff
+      - Route instead
+      - Solo / subagent / workflow behavior
+    reason: "specialist role → generic diagnostician role: skeleton (load-first, procedure, evidence, handoff, route-instead, modes) is mechanism; product facts and provenance footers are project"
+  - source-path: ".claude/agents/staffezee-docs-scribe.md"
+    source-blob-sha: 1b11e32f327148d1eb1197a5c18afe7fab0f51d0
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - harness.self-verification
+    source-sections:
+      - Load first
+      - Procedure
+      - Evidence standard
+      - Handoff
+      - Route instead
+      - Solo / subagent / workflow behavior
+    reason: "specialist role → generic docs-scribe role: skeleton (load-first, procedure, evidence, handoff, route-instead, modes) is mechanism; product facts and provenance footers are project"
+  - source-path: ".claude/agents/staffezee-domain-guide.md"
+    source-blob-sha: e0e1e0579c3c997b408eff1f16ea40ff52801803
+    classification: project
+    mechanism-ids: []
+    reason: "the product's domain role — sisu scaffolds an EMPTY domain-guide; content never extracted"
+  - source-path: ".claude/agents/staffezee-gatekeeper.md"
+    source-blob-sha: 7dde78116b9fbfaed5d4cc29b83bb0daddd12c3a
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - harness.self-verification
+    source-sections:
+      - Load first
+      - Procedure
+      - Evidence standard
+      - Handoff
+      - Route instead
+      - Solo / subagent / workflow behavior
+    reason: "specialist role → generic gatekeeper role: skeleton (load-first, procedure, evidence, handoff, route-instead, modes) is mechanism; product facts and provenance footers are project"
+  - source-path: ".claude/agents/staffezee-handoff-scribe.md"
+    source-blob-sha: 63bdc0de3ea236f1b89caae2a72cf82996de1d86
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - harness.self-verification
+    source-sections:
+      - Load first
+      - Procedure
+      - Evidence standard
+      - Handoff
+      - Route instead
+      - Solo / subagent / workflow behavior
+    reason: "specialist role → generic handoff-scribe role: skeleton (load-first, procedure, evidence, handoff, route-instead, modes) is mechanism; product facts and provenance footers are project"
+  - source-path: ".claude/agents/staffezee-implementer.md"
+    source-blob-sha: e0a21b0bdb20bda7ff7003cd9fe1d69b05a9b8f9
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - harness.self-verification
+    source-sections:
+      - Load first
+      - Procedure
+      - Evidence standard
+      - Handoff
+      - Route instead
+      - Solo / subagent / workflow behavior
+    reason: "specialist role → generic implementer role: skeleton (load-first, procedure, evidence, handoff, route-instead, modes) is mechanism; product facts and provenance footers are project"
+  - source-path: ".claude/agents/staffezee-librarian.md"
+    source-blob-sha: 1eb23bf256f0a3aa0c23a6ba77f920d740c82f82
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - harness.self-verification
+    source-sections:
+      - Load first
+      - Procedure
+      - Evidence standard
+      - Handoff
+      - Route instead
+      - Solo / subagent / workflow behavior
+    reason: "specialist role → generic librarian role: skeleton (load-first, procedure, evidence, handoff, route-instead, modes) is mechanism; product facts and provenance footers are project"
+  - source-path: ".claude/agents/staffezee-operator.md"
+    source-blob-sha: a6014e90e9cf29393ab9919da3135f598753a62e
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - harness.self-verification
+    source-sections:
+      - Load first
+      - Procedure
+      - Evidence standard
+      - Handoff
+      - Route instead
+      - Solo / subagent / workflow behavior
+    reason: "specialist role → generic operator role: skeleton (load-first, procedure, evidence, handoff, route-instead, modes) is mechanism; product facts and provenance footers are project"
+  - source-path: ".claude/agents/staffezee-orchestrator.md"
+    source-blob-sha: 8f38f816a1dac159428a29fbf55d6ab269de9d4d
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - harness.self-verification
+    source-sections:
+      - Load first
+      - Procedure
+      - Evidence standard
+      - Handoff
+      - Route instead
+      - Solo / subagent / workflow behavior
+    reason: "specialist role → generic orchestrator role: skeleton (load-first, procedure, evidence, handoff, route-instead, modes) is mechanism; product facts and provenance footers are project"
+  - source-path: ".claude/agents/staffezee-release-auditor.md"
+    source-blob-sha: b24c1dce327aec7af31062b6a78c9db394cfdbfc
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - harness.self-verification
+    source-sections:
+      - Load first
+      - Procedure
+      - Evidence standard
+      - Handoff
+      - Route instead
+      - Solo / subagent / workflow behavior
+    reason: "specialist role → generic release-auditor role: skeleton (load-first, procedure, evidence, handoff, route-instead, modes) is mechanism; product facts and provenance footers are project"
+  - source-path: ".claude/agents/staffezee-researcher.md"
+    source-blob-sha: c7f90086a6a9d26bedb7c1fbe45412c77ba63309
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - harness.self-verification
+    source-sections:
+      - Load first
+      - Procedure
+      - Evidence standard
+      - Handoff
+      - Route instead
+      - Solo / subagent / workflow behavior
+    reason: "specialist role → generic researcher role: skeleton (load-first, procedure, evidence, handoff, route-instead, modes) is mechanism; product facts and provenance footers are project"
+  - source-path: ".claude/agents/staffezee-reviewer.md"
+    source-blob-sha: 6dfdfeeb4161c7d1719bd61dff32563b658f8546
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - harness.self-verification
+    source-sections:
+      - Load first
+      - Procedure
+      - Evidence standard
+      - Handoff
+      - Route instead
+      - Solo / subagent / workflow behavior
+    reason: "specialist role → generic reviewer role: skeleton (load-first, procedure, evidence, handoff, route-instead, modes) is mechanism; product facts and provenance footers are project"
+  - source-path: ".claude/agents/staffezee-scout.md"
+    source-blob-sha: c49012ece2fb112bfed0ba936ad13ddbd565e23c
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - harness.self-verification
+    source-sections:
+      - Load first
+      - Procedure
+      - Evidence standard
+      - Handoff
+      - Route instead
+      - Solo / subagent / workflow behavior
+    reason: "specialist role → generic scout role: skeleton (load-first, procedure, evidence, handoff, route-instead, modes) is mechanism; product facts and provenance footers are project"
+  - source-path: ".claude/agents/staffezee-validator.md"
+    source-blob-sha: 927da156ee68b8a2761d2686a2290dac41f15e4e
+    classification: hybrid
+    mechanism-ids:
+      - harness.role-dispatch-map
+      - harness.self-verification
+    source-sections:
+      - Load first
+      - Procedure
+      - Evidence standard
+      - Handoff
+      - Route instead
+      - Solo / subagent / workflow behavior
+    reason: "specialist role → generic validator role: skeleton (load-first, procedure, evidence, handoff, route-instead, modes) is mechanism; product facts and provenance footers are project"
+  - source-path: ".claude/hooks/deny-git-no-verify.mjs"
+    source-blob-sha: 3b024208c8f326f77928c02949de0abf5b28a664
+    classification: mechanism
+    mechanism-ids:
+      - agent-hooks.deny-tier0-bypass
+    reason: Tier-0 bypass denial hook; preamble/sh -c/heredoc handling extracted, fail-open posture kept, behaviour pinned by executed tests
+  - source-path: ".claude/hooks/require-e2e-disposition.mjs"
+    source-blob-sha: a07e93ed54f45aa0f5273fed02c7cb888f14d829
+    classification: project
+    mechanism-ids: []
+    reason: subject is e2e tiering / UAT issue labels (out of scope); the hook CLASS (session-protocol enforcement) is covered by the generic hooks
+  - source-path: ".claude/hooks/require-staged-diff-review.mjs"
+    source-blob-sha: 904be2bed602a433a69bb285015ead07b91e54aa
+    classification: mechanism
+    mechanism-ids:
+      - agent-hooks.verification-gate
+    reason: content-identity verification gate (hash of staged diff, TTL, session binding); tmpdir evidence habit kept but CLASSED as review-observation
+  - source-path: ".claude/pre-push-review.config.json"
+    source-blob-sha: 31419920ba7b21ab2d465a646459721330d82f8a
+    classification: hybrid
+    mechanism-ids:
+      - local-git.pre-push-gates
+    source-sections:
+      - _readme (only four keys are executed)
+      - behavior
+      - filePatterns
+      - securityChecks
+      - qualityChecks
+      - output
+    reason: pre-push behaviour keys and the honesty note about advisory-only config are mechanism; projectSpecific and four customRules are project
+  - source-path: ".claude/settings.json"
+    source-blob-sha: c2236abc206f1b6ad2732df9860a6d212085e4e7
+    classification: mechanism
+    mechanism-ids:
+      - agent-hooks.deny-tier0-bypass
+      - agent-hooks.verification-gate
+      - agent-hooks.session-drift-tripwire
+    reason: "the tracked hook wiring — PreToolUse on Bash + SessionStart — is the working precedent for repo-local enforcement"
+  - source-path: ".claude/skills/staffezee-agentic-methods/SKILL.md"
+    source-blob-sha: ec0b02ff6d290e6be1c1a942201fcff392021be6
+    classification: hybrid
+    mechanism-ids:
+      - governance.oracle-integrity
+      - ratchet.non-vacuity
+      - knowledge.capture-helper
+      - ledger.run-journal
+    source-sections:
+      - 1. Session protocol
+      - 2. The evidence bar
+      - 3. Verification recipes
+      - 4. The idea lifecycle
+      - "5.1 The wf-*.js precedent"
+      - 5.3 Delegation shape
+      - 6. Reporting standards
+      - 7. Harness facts
+    reason: "session protocol, evidence bar, honest reporting and fail-open doctrine → rules; every worked example, command and count is project"
+  - source-path: ".claude/skills/staffezee-architecture-contract/SKILL.md"
+    source-blob-sha: 6a562cd54a38ff20cdc4ea72db388b850925dc83
+    classification: project
+    mechanism-ids: []
+    reason: product architecture (tenancy, auth, pipelines); embedded generic security rules inform the reviewer role only
+  - source-path: ".claude/skills/staffezee-build-and-env/SKILL.md"
+    source-blob-sha: 2678f89a26e6651872fede8e81fcdfe86186c3c8
+    classification: project
+    mechanism-ids: []
+    reason: clone-to-running runbook and env catalog for this stack
+  - source-path: ".claude/skills/staffezee-change-control/SKILL.md"
+    source-blob-sha: 4b2dac448c6bbac4f574da1889881f9c5fc6f7d7
+    classification: hybrid
+    mechanism-ids:
+      - governance.autonomy-tiers
+      - governance.oracle-integrity
+      - governance.codeowners
+    source-sections:
+      - Vocabulary
+      - The decision checklist
+      - Tier 0
+      - Tier 1 (rule only)
+      - Tier 2 (conditions only)
+      - Oracle-integrity doctrine
+      - CODEOWNERS reality (single-source rule)
+      - "Machine enforcement: the four hooks (semantics)"
+      - The three unwritten rules
+      - Quick self-audit
+    reason: tiers, stop-and-ask, oracle integrity and the gated-path single-source rule are mechanism; path tables, incidents and release numbers are project
+  - source-path: ".claude/skills/staffezee-code-review/SKILL.md"
+    source-blob-sha: 07e0f9c88fd9eb064365afdb0653edf0614935e3
+    classification: hybrid
+    mechanism-ids:
+      - governance.oracle-integrity
+    source-sections:
+      - Priority order
+      - "Step 1 — reuse inventory first (instruction)"
+      - "Step 3 — output format"
+      - What NOT to flag
+    reason: "review protocol → reviewer role; defect classes, helpers and paths are project"
+  - source-path: ".claude/skills/staffezee-debugging-playbook/SKILL.md"
+    source-blob-sha: 761d26a89787b1348dbf33b888a753b9151f01bb
+    classification: hybrid
+    mechanism-ids:
+      - ratchet.non-vacuity
+    source-sections:
+      - Header note (line anchors drift; RESOLVED rows)
+      - How to read the tables
+      - 8. General triage protocol
+    reason: "discriminating-experiment triage → diagnostician role; symptom tables are project"
+  - source-path: ".claude/skills/staffezee-diagnostics-and-tooling/SKILL.md"
+    source-blob-sha: c5c84cc2ce7a57b842f3357d50b6f057ffef9e10
+    classification: hybrid
+    mechanism-ids:
+      - agent-hooks.session-drift-tripwire
+      - harness.detected-provenance
+    source-sections:
+      - Intro (docs drift, commands don't)
+      - Acting on a library-drift flag
+      - The tripwire's blind spots
+      - Provenance and maintenance
+    reason: measure-don't-eyeball recipe format and tripwire blind-spot analysis are mechanism; the 10 recipes are project
+  - source-path: ".claude/skills/staffezee-diagnostics-and-tooling/scripts/check-gates.mjs"
+    source-blob-sha: aa043634f3239be8d64ce21be76df94ea78d628a
+    classification: hybrid
+    mechanism-ids:
+      - local-git.pre-push-gates
+    source-sections:
+      - gate runner in CI-parity order
+      - "--fast skips suites and SAYS so"
+    reason: "run-the-gates-and-report pattern → pre-push script; the nine named gates are project"
+  - source-path: ".claude/skills/staffezee-diagnostics-and-tooling/scripts/library-drift.mjs"
+    source-blob-sha: 95b9bb6c30230c18551b8c4a5661b4ec0c11de5a
+    classification: mechanism
+    mechanism-ids:
+      - agent-hooks.session-drift-tripwire
+    reason: session-start drift tripwire; generalized to per-fact subject hashes instead of a hand-maintained WATCHES map
+  - source-path: ".claude/skills/staffezee-diagnostics-and-tooling/scripts/ratchet-headroom.mjs"
+    source-blob-sha: 3ea5c3fc0b17f39bab36e4004b2f458d57e54f45
+    classification: mechanism
+    mechanism-ids:
+      - ratchet.debt-ceiling
+    reason: headroom = silent regression budget; LOCK-IT-IN status folded into the ratchet script
+  - source-path: ".claude/skills/staffezee-diagnostics-and-tooling/scripts/release-drift.mjs"
+    source-blob-sha: 2718074f6544cd3e47f451deac0e64acadff958a
+    classification: project
+    mechanism-ids: []
+    reason: "release-branch drift measurement → release-auditor role procedure; no catalog mechanism (release policy is project policy)"
+  - source-path: ".claude/skills/staffezee-docs-and-qa/SKILL.md"
+    source-blob-sha: c49ade9a445b1090a8f9067523a82e1af565f19a
+    classification: hybrid
+    mechanism-ids:
+      - governance.gate-checker-ownership
+    source-sections:
+      - 2. docs/archive semantics
+      - 3. One home per fact
+      - 4. Version-history rules
+      - 7. THE LOCKSTEP RULE (rule + honesty note)
+      - 8. Moving or renaming a doc (CODEOWNERS grep)
+      - 11. House style
+    reason: "one-home-per-fact, rename checklist (protection does not follow renames) → docs-scribe role + gate-checker rule; QA matrices and tree map are project"
+  - source-path: ".claude/skills/staffezee-failure-archaeology/SKILL.md"
+    source-blob-sha: dd319bc853fd119d574f8179ecb97a3ceeb4928c
+    classification: hybrid
+    mechanism-ids:
+      - ratchet.non-vacuity
+      - ledger.run-journal
+    source-sections:
+      - Header (status vocabulary)
+      - "2.8 Governance and harness failures (lessons G1–G8)"
+      - 3. Do-not-re-litigate (device)
+      - 4. Archaeology methods
+    reason: "status vocabulary, the 'control that reported success while enforcing nothing' lesson set and history-mining traps → archaeologist role; the ledger entries are project"
+  - source-path: ".claude/skills/staffezee-oracles-and-gates/SKILL.md"
+    source-blob-sha: e2d2f880ebf354169b25e86e70f6b21a0922b1f3
+    classification: hybrid
+    mechanism-ids:
+      - ratchet.debt-ceiling
+      - ratchet.coverage-floor
+      - ci.coverage-scope
+      - ci.secret-scan
+    source-sections:
+      - 1. The wall (generic CI facts only)
+      - 3. The ratchet system
+      - 4. Local-vs-CI command parity (concept)
+      - 5. Content gates (allowlist philosophy)
+      - 6. Coverage floors (raise-only)
+      - 8. The backend-lint activation subtlety
+      - 9. My PR is red (general rule)
+    reason: ratchet mechanics, skipped-counts-as-satisfied and the secret allowlist rule are mechanism; the four named checks and their numbers are project
+  - source-path: ".claude/skills/staffezee-pre-push-review/SKILL.md"
+    source-blob-sha: 5758cbb4d113fbda292da96e78bc4dd2b9ccf0fd
+    classification: hybrid
+    mechanism-ids:
+      - local-git.pre-push-gates
+    source-sections:
+      - Read this before trusting a PASS
+      - Relationship to the other review surfaces
+      - "Step 2: Load Configuration"
+      - "Step 4: Generate Report (verdict contract)"
+      - "Severity Levels — advisory"
+      - Custom Rules (failure mode)
+    reason: not-the-authoritative-gate, fail-open honesty and the verdict-line contract are mechanism; the project checklist is project
+  - source-path: ".claude/skills/staffezee-product-state/SKILL.md"
+    source-blob-sha: c90bfa428af56fc74f6a5975bafe0e6431c82853
+    classification: project
+    mechanism-ids: []
+    reason: dated product snapshot; its re-derivation runbook (comment-over-body, four-question gate) informs the archaeologist role only
+  - source-path: ".claude/skills/staffezee-rbac-reference/SKILL.md"
+    source-blob-sha: ba7073236b5b12d4408ef0775d09ccca75241cdf
+    classification: project
+    mechanism-ids: []
+    reason: RBAC vocabulary (explicitly excluded); its 'pattern gate is only as good as the naming convention' lesson is captured in gate-checker-ownership prose
+  - source-path: ".claude/skills/staffezee-research-frontier/SKILL.md"
+    source-blob-sha: 1790ffd9a965a273ed10900c1a59f3b191dd150f
+    classification: hybrid
+    mechanism-ids:
+      - ratchet.measurement-identity
+      - ratchet.non-vacuity
+    source-sections:
+      - Intro (candidate until measured)
+      - "Frontier 1 — structural guardrails you can measure"
+      - "You have a result when…"
+      - The discipline note
+    reason: "structural-over-prose guardrails, un-weakenable scans and pre-registered thresholds are mechanism; frontiers 2–3 are product"
+  - source-path: ".claude/skills/staffezee-run-and-operate/SKILL.md"
+    source-blob-sha: 97d33856beae4741c9d2b5e5ad12a09607a0181a
+    classification: project
+    mechanism-ids: []
+    reason: deploy anatomy for two specific workflows; the generic ops rules (owner-gated prod, a gate that cannot fail is not a gate) inform the operator role only
+  - source-path: ".claude/skills/staffezee-staffing-domain/SKILL.md"
+    source-blob-sha: ce8fb9767bf0d887ef12f6a0ac796e1b4a01fd08
+    classification: project
+    mechanism-ids: []
+    reason: "the staffing domain pack — pure domain vocabulary"
+  - source-path: ".claude/skills/staffezee-testing-and-validation/SKILL.md"
+    source-blob-sha: d7d14133296258fd4c51ad0086fb25c4c449ddff
+    classification: hybrid
+    mechanism-ids:
+      - governance.oracle-integrity
+      - ratchet.coverage-floor
+    source-sections:
+      - The 4 skipped tests doctrine (rules)
+      - THE house evidence patterns
+      - Test-modification rules
+    reason: "honest skip reporting, raise-only floors, wrong-grant fail-closed proof → validator role + oracle-integrity; suite matrix and harness internals are project"
+  - source-path: ".claude/workflows/agent-maintenance.js"
+    source-blob-sha: baa94be94538557562eddb26aec6b4a68484e295
+    classification: excluded
+    mechanism-ids: []
+    reason: multi-agent workflow scripts are explicitly out of scope
+  - source-path: ".claude/workflows/architecture-change.js"
+    source-blob-sha: 00905d805572495d223298f7434495ab02ffecbf
+    classification: excluded
+    mechanism-ids: []
+    reason: multi-agent workflow scripts are explicitly out of scope
+  - source-path: ".claude/workflows/bug-diagnosis.js"
+    source-blob-sha: 11ec7e51d22e64aafc3a2cd2fd74f6e570812843
+    classification: excluded
+    mechanism-ids: []
+    reason: multi-agent workflow scripts are explicitly out of scope
+  - source-path: ".claude/workflows/docs-sync.js"
+    source-blob-sha: b3d41b5bbc7f6584f0547211a8f2677ab10aa332
+    classification: excluded
+    mechanism-ids: []
+    reason: multi-agent workflow scripts are explicitly out of scope
+  - source-path: ".claude/workflows/feature-build.js"
+    source-blob-sha: ebbac22aa59c985e3d4b93d5d5dfafaad38a28b9
+    classification: excluded
+    mechanism-ids: []
+    reason: multi-agent workflow scripts are explicitly out of scope
+  - source-path: ".claude/workflows/release-readiness.js"
+    source-blob-sha: d495893f1e5faabd068c694456cfff217959d45e
+    classification: excluded
+    mechanism-ids: []
+    reason: multi-agent workflow scripts are explicitly out of scope
+  - source-path: ".claude/workflows/research-campaign.js"
+    source-blob-sha: 19434671f4276b8e622d1eebf675819e889eed10
+    classification: excluded
+    mechanism-ids: []
+    reason: multi-agent workflow scripts are explicitly out of scope
+  - source-path: ".claude/workflows/test-gap.js"
+    source-blob-sha: 0ea8626ebc30783f9521049408185536b1963b02
+    classification: excluded
+    mechanism-ids: []
+    reason: multi-agent workflow scripts are explicitly out of scope
+  - source-path: ".githooks/pre-push"
+    source-blob-sha: b8aa571040e24a063d8797d650c32a8f86c5c055
+    classification: hybrid
+    mechanism-ids:
+      - local-git.pre-push-gates
+      - local-git.hooks-path
+    source-sections:
+      - agent-session defer to CI
+      - fail-open posture
+      - verdict parsing
+    reason: defer-under-agent-session and fail-open are mechanism; the nested-claude review and config keys are project; the copy-install + version-stamp HABIT is rejected
+  - source-path: ".githooks/pre-push.ps1"
+    source-blob-sha: ca1c0e307ffabb1157c9bc6e121431b5031e21e4
+    classification: hybrid
+    mechanism-ids:
+      - local-git.pre-push-gates
+    source-sections:
+      - agent-session defer
+      - fail-open timeout path
+    reason: "PowerShell mirror of the same gate; platform assumption deliberately NOT inherited (product contract: sh hook invoking node)"
+  - source-path: ".github/CODEOWNERS"
+    source-blob-sha: 8c3a310d7852faa7572b8b1e4ce8d8c9dbc9d90e
+    classification: mechanism
+    mechanism-ids:
+      - governance.codeowners
+      - governance.gate-checker-ownership
+    reason: self-documenting gated-path register with in-line reasons; 'protect the thing, not the pointer' and checker-ownership extracted; the path list is project
+  - source-path: ".github/workflows/pr-validation.yml"
+    source-blob-sha: 6ce312743b2a0ba55cba2b2b1b8645598fba4d64
+    classification: hybrid
+    mechanism-ids:
+      - ci.required-gates
+      - ci.coverage-scope
+      - ci.aggregator-verdict
+      - ci.secret-scan
+      - ci.governance-literals
+      - ratchet.debt-ceiling
+    source-sections:
+      - changes job (always-on scan + fail-safe docs-only classifier)
+      - "heavy jobs if: always() && …"
+      - "validate-backend aggregator (always(), explicit needs.*.result)"
+      - ratchet steps inside required jobs
+      - duplicated gitleaks copies
+    reason: "CI wiring mechanics extracted; job contents, services and the mutable @v5 tags (habit rejected → SHA pins) are project"
+  - source-path: ".gitleaks.toml"
+    source-blob-sha: a3d73456199812194cc7deb0ba3e00156a9dae9c
+    classification: mechanism
+    mechanism-ids:
+      - ci.secret-scan
+    reason: allowlist-is-a-gate-definition rule; the concrete allowlist entries are project
+  - source-path: CLAUDE.md
+    source-blob-sha: 11970ec80f196e7265ebc00854b1e535eb7a2678
+    classification: hybrid
+    mechanism-ids:
+      - governance.autonomy-tiers
+      - governance.oracle-integrity
+      - harness.role-dispatch-map
+      - governance.codeowners
+      - governance.branch-protection
+      - ledger.run-journal
+    source-sections:
+      - "Oracle Integrity & Change Control (rules, not the state list)"
+      - Agent Autonomy Tiers
+      - Routing work to the agent system (dispatch + compaction-survival reason)
+      - Session Protocol
+    reason: "root convention file: doctrine and dispatch are mechanism (dispatch map now GENERATED); project overview, RBAC, oracle-state narrative and documentation standards are project; the hand-written roster HABIT is rejected"
+  - source-path: backend/package.json
+    source-blob-sha: 94f3c2502adb4459a55582b85a3d267eccfd4d98
+    classification: project
+    mechanism-ids: []
+    reason: "gate commands as npm entrypoints — informative for the node stack pack, not portable content"
+  - source-path: backend/scripts/checkjs-ratchet.js
+    source-blob-sha: 526f746b84a19492fce939430dff8c68560daa9d
+    classification: mechanism
+    mechanism-ids:
+      - ratchet.debt-ceiling
+      - ratchet.measurement-identity
+    reason: count-ratchet pattern; its silent-zero-on-spawn-failure habit is rejected (parsers fail loudly)
+  - source-path: backend/scripts/eslint-ratchet.mjs
+    source-blob-sha: 5e2059e1ada9988673136e7354cbe409adf5d0a9
+    classification: mechanism
+    mechanism-ids:
+      - ratchet.debt-ceiling
+      - ratchet.measurement-identity
+    reason: count-ratchet pattern (eslint JSON errorCount sum, warnings never gated)
+  - source-path: backend/scripts/strictnull-ratchet.js
+    source-blob-sha: 35906c96d0ac81c7656379e53f1a6f13dae52969
+    classification: mechanism
+    mechanism-ids:
+      - ratchet.debt-ceiling
+      - ratchet.measurement-identity
+    reason: retained-at-zero tripwire pattern; silent-zero habit rejected
+  - source-path: backend/tests/ciBackendGateWiring.test.js
+    source-blob-sha: b1d5114d3c059ee0387e9a3825e411a9f108cce1
+    classification: mechanism
+    mechanism-ids:
+      - ci.aggregator-verdict
+      - harness.self-verification
+    reason: "aggregator always()/explicit results/exact name pins — executed, not grepped"
+  - source-path: backend/tests/ciDocsOnlyClassifiers.test.js
+    source-blob-sha: f0b6391b06cb27543314a55b9ee073675ee08421
+    classification: mechanism
+    mechanism-ids:
+      - ci.coverage-scope
+      - harness.self-verification
+    reason: "docs-only classifier oracle; the 'first version was vacuous — mutation-test it' lesson → non-vacuity rule"
+  - source-path: backend/tests/claudeAgentRegistry.test.js
+    source-blob-sha: 9eddf5596aa38bdcdef64792d808cff358e9d23a
+    classification: mechanism
+    mechanism-ids:
+      - harness.self-verification
+      - harness.role-dispatch-map
+    reason: "harness pinning itself: frontmatter validity, required fields, dispatch binding, mutation proofs — generalized into the emitted suite"
+  - source-path: backend/tests/claudeHooks.test.js
+    source-blob-sha: 93f2f7df730554b0ef552113b86250664c66e947
+    classification: mechanism
+    mechanism-ids:
+      - harness.self-verification
+      - agent-hooks.deny-tier0-bypass
+      - agent-hooks.verification-gate
+    reason: "behavioural pins for fail-open hooks incl. bypass shapes — generalized into agent-hooks.test.mjs"
+  - source-path: backend/tests/workflowExpressionLength.test.js
+    source-blob-sha: 5c0664ad5c667977162bd238e09eb127115a3001
+    classification: mechanism
+    mechanism-ids: []
+    reason: "GAP: oracle for the expression-length guard; same unextracted subject as scripts/workflow-expression-length.mjs"
+  - source-path: docs/development/AGENT_DRIVEN_DEVELOPMENT_STRATEGY.md
+    source-blob-sha: 2092f2db421784e7f890666766f661e5e4911734
+    classification: hybrid
+    mechanism-ids:
+      - governance.autonomy-tiers
+      - governance.oracle-integrity
+    source-sections:
+      - 8. The Agent Operating Model
+      - 10. Anti-Patterns
+      - 11. Agent Autonomy Tiers
+    reason: sections 8/10/11 only; the rest is instance history
+  - source-path: package.json
+    source-blob-sha: 0e1919cc2fc190211edb2c88afd247c26ceef44f
+    classification: project
+    mechanism-ids: []
+    reason: "gate commands as npm entrypoints — informative for the node stack pack, not portable content"
+  - source-path: quality-baselines.json
+    source-blob-sha: 9f9ec52c4715465cc8f1a464087519bb28c37740
+    classification: mechanism
+    mechanism-ids:
+      - ratchet.debt-ceiling
+      - ratchet.coverage-floor
+    reason: live ratchet baselines (five ceilings + one floor); direction-in-prose habit replaced by per-metric direction + identity
+  - source-path: scripts/e2e-journey-floor.mjs
+    source-blob-sha: daef1ecbfaf4e73680f2822f678cf39f34e5aeee
+    classification: hybrid
+    mechanism-ids:
+      - ratchet.coverage-floor
+    source-sections:
+      - floor contract (count may only go UP)
+      - missing-directory is a hard failure
+      - counts files, not tests
+    reason: the floor-ratchet PATTERN is mechanism; its subject (e2e tiering) is out of scope
+  - source-path: scripts/eslint-ratchet.mjs
+    source-blob-sha: d87decc60f9e9447e2c9a529dba913cb50f1e14e
+    classification: mechanism
+    mechanism-ids:
+      - ratchet.debt-ceiling
+      - ratchet.measurement-identity
+    reason: "the original ratchet: baseline only falls, lower-in-same-PR nudge; scope lived only in the script → now a declared, hashed identity"
+  - source-path: scripts/governance-literals-check.mjs
+    source-blob-sha: 942548b36ef9fbac241d8f8903fe5f0fb46c087d
+    classification: mechanism
+    mechanism-ids:
+      - ci.governance-literals
+    reason: anchored-per-line literal guard (EVERY matching line, substring not regex); pins executable rules too
+  - source-path: scripts/setup-hooks.ps1
+    source-blob-sha: 6abd9f708cecfbc8049154d4b54af770e0492ec7
+    classification: mechanism
+    mechanism-ids:
+      - local-git.hooks-path
+    reason: PowerShell installer mirror; same rejection of copy-based install
+  - source-path: scripts/setup-hooks.sh
+    source-blob-sha: 634ca8c31c86ebae4c1fcf1629b37d1728094471
+    classification: mechanism
+    mechanism-ids:
+      - local-git.hooks-path
+    reason: hook installer; the COPY habit and version stamp are rejected in favour of core.hooksPath; the ask-git-not-ls-.git lesson kept
+  - source-path: scripts/strictnull-ratchet.mjs
+    source-blob-sha: 71df4344acd94081c48866a883a6b46fbb50a123
+    classification: mechanism
+    mechanism-ids:
+      - ratchet.debt-ceiling
+      - ratchet.measurement-identity
+    reason: tsc error-count ratchet pattern with re-throw on empty output
+  - source-path: scripts/workflow-expression-length.mjs
+    source-blob-sha: f5482af56709cc761734a03812cbd1e9b436fbac
+    classification: mechanism
+    mechanism-ids: []
+    reason: "GAP: GitHub expression-length cap guard (21,000 chars) is a generic CI invariant NOT extracted in v1 — reported by doctor --compare as a gap"

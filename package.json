@@ -1,0 +1,24 @@
+{
+  "name": "sisu",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Agent-governance harness generator. Private, internal. Never published.",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "bin": {
+    "sisu": "./bin/sisu.mjs"
+  },
+  "scripts": {
+    "test": "node --test \"test/**/*.test.mjs\"",
+    "test:assets": "node --test assets/tests/agent-hooks.test.mjs",
+    "check": "tsc -p tsconfig.json",
+    "lint:canonical": "node bin/sisu.mjs lint-canonical",
+    "gate": "npm run check && npm run lint:canonical && npm test && npm run test:assets"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
+  }
+}

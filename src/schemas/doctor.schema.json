@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sisu.doctor/1",
+  "title": "sisu doctor report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "generator", "project", "rows", "predicates", "knowledge", "waivers", "detected", "owned", "volatile"],
+  "properties": {
+    "schema": { "const": "sisu.doctor/1" },
+    "generator": { "type": "string" },
+    "project": {
+      "type": "object",
+      "required": ["name", "profile", "targets", "packs", "manifestGenerator", "intentHashMatches"],
+      "properties": {
+        "name": { "type": "string" },
+        "profile": { "type": "string" },
+        "targets": { "type": "array", "items": { "type": "string" } },
+        "packs": { "type": "array", "items": { "type": "string" } },
+        "manifestGenerator": { "type": ["string", "null"] },
+        "intentHashMatches": { "type": ["boolean", "null"] }
+      }
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "lifecycle", "state", "reason", "targets", "intended", "actual"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "lifecycle": { "enum": ["experimental", "stable", "deprecated"] },
+          "state": { "enum": ["installed", "omitted", "deprecated", "conflict"] },
+          "reason": { "type": ["string", "null"] },
+          "targets": { "type": "array", "items": { "type": "string" } },
+          "intended": { "$ref": "#/$defs/tuple" },
+          "actual": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["effect", "plane", "bypassableBy", "failMode", "evidence", "notes"],
+            "properties": {
+              "effect": { "type": "string" },
+              "plane": { "type": "string" },
+              "bypassableBy": { "type": "string" },
+              "failMode": { "type": "string" },
+              "evidence": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["kind", "probe", "observedAt"],
+                "properties": {
+                  "kind": { "enum": ["declared", "observed", "unknown"] },
+                  "probe": { "type": "string" },
+                  "observedAt": { "type": ["string", "null"] }
+                }
+              },
+              "notes": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "predicates": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["definition", "required", "perTarget"],
+        "properties": {
+          "definition": { "type": "string" },
+          "required": { "type": "boolean" },
+          "perTarget": { "type": "object", "additionalProperties": { "type": "object", "required": ["met", "failing"], "properties": { "met": { "enum": [true, false, "unknown"] }, "failing": { "type": "array", "items": { "type": "string" } } } } }
+        }
+      }
+    },
+    "knowledge": { "type": "object" },
+    "waivers": { "type": "array", "items": { "type": "object" } },
+    "detected": { "type": "array", "items": { "type": "object" } },
+    "owned": { "type": "array", "items": { "type": "object" } },
+    "volatile": {
+      "type": "object",
+      "required": ["observedAt", "durationMs", "machine"],
+      "properties": { "observedAt": { "type": "string" }, "durationMs": { "type": "number" }, "machine": { "type": "object" } }
+    }
+  },
+  "$defs": {
+    "tuple": {
+      "type": "object",
+      "required": ["effect", "plane", "bypassableBy", "failMode"],
+      "properties": {
+        "effect": { "enum": ["blocking", "preventive", "detective", "advisory", "none"] },
+        "plane": { "enum": ["agent-runtime", "local-git", "ci", "repository", "organization"] },
+        "bypassableBy": { "enum": ["workspace-write", "repo-write", "repo-admin", "org-admin", "none"] },
+        "failMode": { "enum": ["open", "closed", "n/a"] }
+      }
+    }
+  }
+}

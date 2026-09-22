@@ -1,0 +1,792 @@
+{
+  "generator": "0.1.0",
+  "mechanisms": [
+    {
+      "covers": [],
+      "evidenceProbe": "local.agent-hooks-wired",
+      "id": "agent-hooks.deny-tier0-bypass",
+      "intended": {
+        "bypassableBy": "workspace-write",
+        "effect": "preventive",
+        "failMode": "open",
+        "plane": "agent-runtime"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Agent-runtime hook denies Tier-0 bypass commands"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.agent-hooks-wired",
+      "id": "agent-hooks.session-drift-tripwire",
+      "intended": {
+        "bypassableBy": "workspace-write",
+        "effect": "advisory",
+        "failMode": "open",
+        "plane": "agent-runtime"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Session-start knowledge drift tripwire"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.agent-hooks-wired",
+      "id": "agent-hooks.verification-gate",
+      "intended": {
+        "bypassableBy": "workspace-write",
+        "effect": "preventive",
+        "failMode": "open",
+        "plane": "agent-runtime"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Verification gate decides on content identity"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.action-pins",
+      "id": "ci.action-sha-pinning",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "detective",
+        "failMode": "n/a",
+        "plane": "ci"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Third-party actions pinned to full SHAs"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.ci-workflow-shape",
+      "id": "ci.aggregator-verdict",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "blocking",
+        "failMode": "n/a",
+        "plane": "ci"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Aggregator runs under always() and inspects results"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.ci-workflow-shape",
+      "id": "ci.coverage-scope",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "detective",
+        "failMode": "n/a",
+        "plane": "ci"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Every change executes something"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.self-verification",
+      "id": "ci.governance-literals",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "detective",
+        "failMode": "n/a",
+        "plane": "ci"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Governance literals stay intact"
+    },
+    {
+      "covers": [
+        "**"
+      ],
+      "evidenceProbe": "local.ci-workflow-shape",
+      "id": "ci.required-gates",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "blocking",
+        "failMode": "n/a",
+        "plane": "ci"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [
+        "remote-wall"
+      ],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Required CI gates"
+    },
+    {
+      "covers": [
+        "**"
+      ],
+      "evidenceProbe": "local.ci-workflow-shape",
+      "id": "ci.secret-scan",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "blocking",
+        "failMode": "n/a",
+        "plane": "ci"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [
+        "remote-wall"
+      ],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Blocking secret scan, always zero"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "remote.agent-identity",
+      "id": "governance.agent-identity-separation",
+      "intended": {
+        "bypassableBy": "org-admin",
+        "effect": "blocking",
+        "failMode": "n/a",
+        "plane": "organization"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [
+        "remote-wall"
+      ],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Agent identity separate from the approver"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "none",
+      "id": "governance.autonomy-tiers",
+      "intended": {
+        "bypassableBy": "workspace-write",
+        "effect": "advisory",
+        "failMode": "n/a",
+        "plane": "agent-runtime"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Three autonomy tiers"
+    },
+    {
+      "covers": [
+        "**"
+      ],
+      "evidenceProbe": "remote.branch-protection",
+      "id": "governance.branch-protection",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "blocking",
+        "failMode": "n/a",
+        "plane": "repository"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [
+        "remote-wall"
+      ],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Protected branches require the gates"
+    },
+    {
+      "covers": [
+        "{{policy.tier1-paths}}",
+        "{{gate-definition-paths}}"
+      ],
+      "evidenceProbe": "remote.codeowners-errors",
+      "id": "governance.codeowners",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "blocking",
+        "failMode": "n/a",
+        "plane": "repository"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [
+        "remote-wall"
+      ],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Code-owner review on gate-definition paths"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.codeowners-static",
+      "id": "governance.gate-checker-ownership",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "detective",
+        "failMode": "n/a",
+        "plane": "ci"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "The files that verify a mechanism are gated too"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "none",
+      "id": "governance.oracle-integrity",
+      "intended": {
+        "bypassableBy": "workspace-write",
+        "effect": "advisory",
+        "failMode": "n/a",
+        "plane": "agent-runtime"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Oracle-integrity doctrine"
+    },
+    {
+      "covers": [
+        "**"
+      ],
+      "evidenceProbe": "remote.branch-protection",
+      "id": "governance.org-rulesets",
+      "intended": {
+        "bypassableBy": "org-admin",
+        "effect": "blocking",
+        "failMode": "n/a",
+        "plane": "organization"
+      },
+      "lifecycle": "experimental",
+      "reason": null,
+      "state": "installed",
+      "strict": [
+        "remote-wall"
+      ],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Organization-level rulesets"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "remote.required-checks-binding",
+      "id": "governance.required-check-binding",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "blocking",
+        "failMode": "n/a",
+        "plane": "repository"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [
+        "remote-wall"
+      ],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Required checks bound to their expected source"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "manual.cold-load",
+      "id": "harness.cold-load-isolation",
+      "intended": {
+        "bypassableBy": "workspace-write",
+        "effect": "detective",
+        "failMode": "n/a",
+        "plane": "agent-runtime"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Cold-session load under isolated config"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.detected-staleness",
+      "id": "harness.detected-provenance",
+      "intended": {
+        "bypassableBy": "workspace-write",
+        "effect": "detective",
+        "failMode": "n/a",
+        "plane": "local-git"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Detected findings carry provenance"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "none",
+      "id": "harness.fallback-auto-load",
+      "intended": {
+        "bypassableBy": "workspace-write",
+        "effect": "advisory",
+        "failMode": "n/a",
+        "plane": "agent-runtime"
+      },
+      "lifecycle": "stable",
+      "reason": "requires target agents-md",
+      "state": "omitted",
+      "strict": [],
+      "targets": [],
+      "title": "Fallback auto-load status is calibrated, not claimed"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.owned-checksums",
+      "id": "harness.owned-checksums",
+      "intended": {
+        "bypassableBy": "workspace-write",
+        "effect": "detective",
+        "failMode": "n/a",
+        "plane": "local-git"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Owned files are checksummed"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.self-verification",
+      "id": "harness.role-dispatch-map",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "detective",
+        "failMode": "n/a",
+        "plane": "ci"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Generated role-dispatch map, checked both ways"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.self-verification",
+      "id": "harness.self-verification",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "detective",
+        "failMode": "n/a",
+        "plane": "ci"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [
+        "self-verification-green"
+      ],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Emitted self-verification suite"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.knowledge-health",
+      "id": "knowledge.authority-lint",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "detective",
+        "failMode": "n/a",
+        "plane": "ci"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Knowledge never outranks the spine"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "none",
+      "id": "knowledge.capture-helper",
+      "intended": {
+        "bypassableBy": "workspace-write",
+        "effect": "advisory",
+        "failMode": "n/a",
+        "plane": "agent-runtime"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Capturing a lesson costs under thirty seconds"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.knowledge-health",
+      "id": "knowledge.edge-semantics",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "detective",
+        "failMode": "n/a",
+        "plane": "ci"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Typed edges with documented semantics"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.index-budget",
+      "id": "knowledge.index-budget",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "detective",
+        "failMode": "n/a",
+        "plane": "ci"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Eager context budget enforced by index"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.knowledge-health",
+      "id": "knowledge.two-tier-promotion",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "detective",
+        "failMode": "n/a",
+        "plane": "ci"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Candidate to active requires verification or approval"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "remote.ledger-pointers",
+      "id": "ledger.ci-pointer",
+      "intended": {
+        "bypassableBy": "workspace-write",
+        "effect": "advisory",
+        "failMode": "n/a",
+        "plane": "local-git"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Ledger verdicts point at the CI record"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "none",
+      "id": "ledger.run-journal",
+      "intended": {
+        "bypassableBy": "workspace-write",
+        "effect": "advisory",
+        "failMode": "n/a",
+        "plane": "local-git"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "One ledger file per run"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.hooks-path",
+      "id": "local-git.hooks-path",
+      "intended": {
+        "bypassableBy": "workspace-write",
+        "effect": "preventive",
+        "failMode": "open",
+        "plane": "local-git"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Tracked hooks via core.hooksPath"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.hooks-path",
+      "id": "local-git.pre-push-gates",
+      "intended": {
+        "bypassableBy": "workspace-write",
+        "effect": "preventive",
+        "failMode": "open",
+        "plane": "local-git"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Pre-push runs the cheap gates"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.ratchet-file",
+      "id": "ratchet.coverage-floor",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "blocking",
+        "failMode": "n/a",
+        "plane": "ci"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Coverage floors only rise"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.ratchet-file",
+      "id": "ratchet.debt-ceiling",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "blocking",
+        "failMode": "n/a",
+        "plane": "ci"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Debt ceilings only fall"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.ratchet-file",
+      "id": "ratchet.measurement-identity",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "blocking",
+        "failMode": "n/a",
+        "plane": "ci"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Measurement identity bound to every baseline"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "none",
+      "id": "ratchet.non-vacuity",
+      "intended": {
+        "bypassableBy": "workspace-write",
+        "effect": "advisory",
+        "failMode": "n/a",
+        "plane": "agent-runtime"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "An oracle never seen red is not evidence"
+    },
+    {
+      "covers": [],
+      "evidenceProbe": "local.waivers",
+      "id": "ratchet.waiver-expiry",
+      "intended": {
+        "bypassableBy": "repo-admin",
+        "effect": "blocking",
+        "failMode": "n/a",
+        "plane": "ci"
+      },
+      "lifecycle": "stable",
+      "reason": null,
+      "state": "installed",
+      "strict": [],
+      "targets": [
+        "claude-code"
+      ],
+      "title": "Waivers expire; expired is a hard fail"
+    }
+  ],
+  "probes": [
+    "local.action-pins",
+    "local.agent-hooks-wired",
+    "local.ci-workflow-shape",
+    "local.codeowners-static",
+    "local.detected-staleness",
+    "local.hooks-path",
+    "local.index-budget",
+    "local.knowledge-health",
+    "local.owned-checksums",
+    "local.ratchet-file",
+    "local.self-verification",
+    "local.waivers",
+    "manual.cold-load",
+    "remote.agent-identity",
+    "remote.branch-protection",
+    "remote.codeowners-errors",
+    "remote.ledger-pointers",
+    "remote.required-checks-binding"
+  ],
+  "requiredCheck": "sisu / verdict",
+  "schema": "sisu.catalog/1",
+  "strictPredicates": {
+    "evidence-fresh": {
+      "definition": "every remote-derived row has evidence.kind = observed and age <= 30 days",
+      "mechanisms": []
+    },
+    "no-conflicts": {
+      "definition": "no mechanism is in state conflict",
+      "mechanisms": []
+    },
+    "remote-wall": {
+      "definition": "effect = blocking AND plane IN (ci, repository, organization) AND bypassable-by >= repo-admin, for every installed mechanism tagged remote-wall",
+      "mechanisms": [
+        "ci.required-gates",
+        "ci.secret-scan",
+        "governance.agent-identity-separation",
+        "governance.branch-protection",
+        "governance.codeowners",
+        "governance.org-rulesets",
+        "governance.required-check-binding"
+      ]
+    },
+    "self-verification-green": {
+      "definition": "harness.self-verification last observed green on HEAD",
+      "mechanisms": [
+        "harness.self-verification"
+      ]
+    },
+    "topology-resolved": {
+      "definition": "none of the four topology facts is unknown",
+      "mechanisms": []
+    }
+  },
+  "targets": {
+    "claude-code": {
+      "contract": "2.1"
+    }
+  }
+}

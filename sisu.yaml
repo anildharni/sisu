@@ -1,0 +1,210 @@
+# sisu intent file — hand-editable. Everything under `detected:` is machine-written
+# with provenance; edit a detected value only with an `override-reason`, or `doctor`
+# reports it as an unaudited policy change. Checksums never live here (see sisu.lock.json).
+schema: 1
+product:
+  name: sisu
+  summary: "Agent-governance harness generator: installs roles, change-control tiers, quality ratchets, hooks, an accreting knowledge base and an audit ledger into a software project. Private, internal; never published."
+profile: solo
+targets:
+  - claude-code
+packs:
+  - node
+release:
+  model: trunk
+  default-branch: main
+  integration-branch: null
+policy:
+  tier1-paths: []
+  approver: null
+  floors:
+    strict-predicates:
+      - remote-wall
+      - no-conflicts
+  knowledge:
+    reverify-days: 90
+    loop-dead:
+      min-candidates: 20
+      max-age-days: 30
+      min-promotion-rate: 0.05
+      window-days: 60
+    eager-budget-bytes: 24576
+topology:
+  agent-principal: unknown
+  approver-principal: unknown
+  agent-repo-role: unknown
+  same-principal: unknown
+detected:
+  stack:
+    value:
+      - node
+    evidence: detected
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:6f66981dfc89ede98a544b5eefb3892e84a541111e43c303886525f55a024e32;partial"
+    inputs:
+      - package.json
+      - pyproject.toml
+      - setup.py
+      - requirements.txt
+  package-manager:
+    value: npm
+    evidence: detected
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:3df7b4e1adba0890c234d7f2853759ff22146ca76461f9d2a0eafb2b3b6e0ee3;partial"
+    inputs:
+      - package-lock.json
+      - pnpm-lock.yaml
+      - yarn.lock
+      - uv.lock
+      - poetry.lock
+      - requirements.txt
+  test-runner:
+    value:
+      - node:test
+    evidence: detected
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:3fac1d9faed2183ea18d5db5b4ad9c0736063d206424fc77b0544d53da2a248a;partial"
+    inputs:
+      - package.json
+      - pyproject.toml
+      - pytest.ini
+  linter:
+    value: unknown
+    evidence: unknown
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:29b7cc12988427b83fe198cc06dd434048ed0aee27f98debb5cec81d636be081;partial"
+    inputs:
+      - package.json
+      - pyproject.toml
+      - ruff.toml
+  typechecker:
+    value:
+      - tsc
+    evidence: detected
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:5606e988f579fc60cc799310ef8c9bdc18923a183708f09313f78df9a4ac1ed6;partial"
+    inputs:
+      - package.json
+      - tsconfig.json
+      - pyproject.toml
+      - mypy.ini
+  ci:
+    value: none
+    evidence: detected
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:f5d589100f95b65d7565c6895a98101aebbd019c33d5527c4a2a47252f4af592;partial"
+    inputs:
+      - ".github/workflows"
+  existing-workflows:
+    value: []
+    evidence: detected
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855;partial"
+    inputs: []
+  git-host:
+    value: github
+    evidence: detected
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:c3901bf354f6ee86ff5168f7e2e0aaee0f739a78252ed26bbaddea9b1ae1126b;partial"
+    inputs:
+      - ".git/config"
+  repo-slug:
+    value: anildharni/sisu
+    evidence: detected
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:c3901bf354f6ee86ff5168f7e2e0aaee0f739a78252ed26bbaddea9b1ae1126b;partial"
+    inputs:
+      - ".git/config"
+  default-branch:
+    value: main
+    evidence: detected
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:ae50d602709fb6e800a3a208d6ce779da5c5cd301dbf9b0acbd29e5516c11dec;partial"
+    inputs:
+      - ".git/HEAD"
+  hooks-path:
+    value: unset
+    evidence: detected
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:c3901bf354f6ee86ff5168f7e2e0aaee0f739a78252ed26bbaddea9b1ae1126b;partial"
+    inputs:
+      - ".git/config"
+  existing-agent-config:
+    value: []
+    evidence: detected
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:748d6fe1d590bc1d39442872ac6489bdd5532f7ef821c4a5b64a916f86281372;partial"
+    inputs:
+      - CLAUDE.md
+  branch-protection:
+    value: unknown
+    evidence: unknown
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:c3901bf354f6ee86ff5168f7e2e0aaee0f739a78252ed26bbaddea9b1ae1126b;partial"
+    inputs:
+      - ".git/config"
+  codeowners-enforced:
+    value: unknown
+    evidence: unknown
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:c3901bf354f6ee86ff5168f7e2e0aaee0f739a78252ed26bbaddea9b1ae1126b;partial"
+    inputs:
+      - ".git/config"
+  node-runtime:
+    value: 24.11.1
+    evidence: detected
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855;partial"
+    inputs: []
+  applicable-oracles:
+    value:
+      - node.audit
+      - node.test
+      - node.typecheck
+    evidence: detected
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:9830e4b130b6fae8f6d47e911d7b60cfc43a4e6c1adeef8acf6a9cb131e124c8;partial"
+    inputs:
+      - package.json
+      - pyproject.toml
+      - ".eslintrc.cjs"
+      - ".eslintrc.js"
+      - ".eslintrc.json"
+      - eslint.config.cjs
+      - eslint.config.js
+      - eslint.config.mjs
+      - "jest.config.*"
+      - package-lock.json
+      - package.json
+      - tsconfig.json
+      - "vitest.config.*"
+  gate-definition-paths:
+    value:
+      - package-lock.json
+      - package.json
+      - tsconfig.json
+    evidence: detected
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:7154daf5bf73075ae5b7fc8bae3088567e4b590d5c37fc55234523dc1a76c1c6;partial"
+    inputs:
+      - package-lock.json
+      - package.json
+      - tsconfig.json
+  oracle-verification:
+    value:
+      node.test:
+        ran: true
+        verdict: pass
+        exitCode: 0
+      node.typecheck:
+        ran: true
+        verdict: fail
+        exitCode: 2
+      node.audit:
+        ran: true
+        verdict: pass
+        exitCode: 0
+    evidence: detected
+    at: e1b2e3cda13f17415ab552bf1b739ef9cf7df1d0
+    inputs-digest: "sha256:none;partial"
+    inputs: []

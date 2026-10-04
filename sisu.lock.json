@@ -1,0 +1,402 @@
+{
+  "actionPins": {
+    "actions/checkout": {
+      "sha": "08c6903cd8c0fde910a37f88322edcfb5dd907a8",
+      "tag": "v5.0.0"
+    },
+    "actions/setup-node": {
+      "sha": "a0853c24544627f65ddf259abe73b1d18a591444",
+      "tag": "v5.0.0"
+    },
+    "actions/setup-python": {
+      "sha": "e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+      "tag": "v6.0.0"
+    }
+  },
+  "catalogSchema": 1,
+  "composition": {
+    ".claude/agents/archaeologist.md": [
+      "canonical/roles/archaeologist.md"
+    ],
+    ".claude/agents/architect.md": [
+      "canonical/roles/architect.md"
+    ],
+    ".claude/agents/diagnostician.md": [
+      "canonical/roles/diagnostician.md"
+    ],
+    ".claude/agents/docs-scribe.md": [
+      "canonical/roles/docs-scribe.md"
+    ],
+    ".claude/agents/domain-guide.md": [
+      "project/roles/domain-guide.md"
+    ],
+    ".claude/agents/gatekeeper.md": [
+      "canonical/roles/gatekeeper.md"
+    ],
+    ".claude/agents/handoff-scribe.md": [
+      "canonical/roles/handoff-scribe.md"
+    ],
+    ".claude/agents/implementer.md": [
+      "canonical/roles/implementer.md"
+    ],
+    ".claude/agents/librarian.md": [
+      "canonical/roles/librarian.md"
+    ],
+    ".claude/agents/operator.md": [
+      "canonical/roles/operator.md"
+    ],
+    ".claude/agents/orchestrator.md": [
+      "canonical/roles/orchestrator.md"
+    ],
+    ".claude/agents/release-auditor.md": [
+      "canonical/roles/release-auditor.md"
+    ],
+    ".claude/agents/researcher.md": [
+      "canonical/roles/researcher.md"
+    ],
+    ".claude/agents/reviewer.md": [
+      "canonical/roles/reviewer.md"
+    ],
+    ".claude/agents/scout.md": [
+      "canonical/roles/scout.md"
+    ],
+    ".claude/agents/validator.md": [
+      "canonical/roles/validator.md"
+    ],
+    "CLAUDE.md": [
+      "canonical/rules/answer.two-questions.md",
+      "canonical/rules/tiers.autonomy.md",
+      "canonical/rules/oracle-integrity.doctrine.md",
+      "canonical/rules/change-control.paths.md",
+      "canonical/rules/session.protocol.md",
+      "canonical/rules/dispatch.roles.md",
+      "canonical/rules/knowledge.usage.md",
+      "canonical/rules/ledger.usage.md",
+      "canonical/rules/evidence.classes.md",
+      "canonical/rules/enforcement.table.md",
+      "canonical/roles/archaeologist.md",
+      "canonical/roles/architect.md",
+      "canonical/roles/diagnostician.md",
+      "canonical/roles/docs-scribe.md",
+      "project/roles/domain-guide.md",
+      "canonical/roles/gatekeeper.md",
+      "canonical/roles/handoff-scribe.md",
+      "canonical/roles/implementer.md",
+      "canonical/roles/librarian.md",
+      "canonical/roles/operator.md",
+      "canonical/roles/orchestrator.md",
+      "canonical/roles/release-auditor.md",
+      "canonical/roles/researcher.md",
+      "canonical/roles/reviewer.md",
+      "canonical/roles/scout.md",
+      "canonical/roles/validator.md"
+    ],
+    "harness/agent-hooks/deny-tier0.mjs": [
+      "assets/agent-hooks/deny-tier0.mjs"
+    ],
+    "harness/agent-hooks/protect-owned-paths.mjs": [
+      "assets/agent-hooks/protect-owned-paths.mjs"
+    ],
+    "harness/agent-hooks/session-start.mjs": [
+      "assets/agent-hooks/session-start.mjs"
+    ],
+    "harness/agent-hooks/shell-text.mjs": [
+      "assets/agent-hooks/shell-text.mjs"
+    ],
+    "harness/agent-hooks/verification-gate.mjs": [
+      "assets/agent-hooks/verification-gate.mjs"
+    ],
+    "harness/lib/frontmatter.mjs": [
+      "assets/lib/frontmatter.mjs"
+    ],
+    "harness/lib/hash.mjs": [
+      "assets/lib/hash.mjs"
+    ],
+    "harness/lib/identity.mjs": [
+      "assets/lib/identity.mjs"
+    ],
+    "harness/lib/knowledge.mjs": [
+      "assets/lib/knowledge.mjs"
+    ],
+    "harness/lib/measure.mjs": [
+      "assets/lib/measure.mjs"
+    ],
+    "harness/lib/yaml.mjs": [
+      "assets/lib/yaml.mjs"
+    ],
+    "harness/scripts/capture.mjs": [
+      "assets/scripts/capture.mjs"
+    ],
+    "harness/scripts/cold-load-check.mjs": [
+      "assets/scripts/cold-load-check.mjs"
+    ],
+    "harness/scripts/common.mjs": [
+      "assets/scripts/common.mjs"
+    ],
+    "harness/scripts/drift.mjs": [
+      "assets/scripts/drift.mjs"
+    ],
+    "harness/scripts/index.mjs": [
+      "assets/scripts/index.mjs"
+    ],
+    "harness/scripts/ledger.mjs": [
+      "assets/scripts/ledger.mjs"
+    ],
+    "harness/scripts/pre-push.mjs": [
+      "assets/scripts/pre-push.mjs"
+    ],
+    "harness/scripts/promote.mjs": [
+      "assets/scripts/promote.mjs"
+    ],
+    "harness/scripts/ratchet.mjs": [
+      "assets/scripts/ratchet.mjs"
+    ],
+    "harness/scripts/setup-hooks.mjs": [
+      "assets/scripts/setup-hooks.mjs"
+    ],
+    "harness/scripts/waiver.mjs": [
+      "assets/scripts/waiver.mjs"
+    ],
+    "harness/scripts/wire-remote.mjs": [
+      "assets/scripts/wire-remote.mjs"
+    ],
+    "harness/tests/agent-hooks.test.mjs": [
+      "assets/tests/agent-hooks.test.mjs"
+    ],
+    "harness/tests/harness.test.mjs": [
+      "assets/tests/harness.test.mjs"
+    ]
+  },
+  "conflicts": {},
+  "contract": {
+    "ci": "github-actions",
+    "gitHost": "github",
+    "os": [
+      "windows",
+      "linux"
+    ],
+    "osUntested": [
+      "macos"
+    ],
+    "runtime": "node>=20",
+    "targets": {
+      "claude-code": "2.1"
+    }
+  },
+  "gatedPaths": [
+    "/sisu.yaml",
+    "/sisu.lock.json",
+    "/harness/",
+    "/overrides/",
+    "/CLAUDE.md",
+    "/AGENTS.md",
+    "/.claude/",
+    "/.github/",
+    "/project/quality-baselines.json",
+    "/project/waivers/",
+    "/project/roles/",
+    "/package-lock.json",
+    "/package.json",
+    "/tsconfig.json"
+  ],
+  "generator": "0.1.0",
+  "intentHash": "sha256:90828779e99a81f6633569f1b33ee693eed94274511e7d9d0d08240deaa13393",
+  "oracles": [
+    {
+      "argv": [
+        "npm",
+        "test"
+      ],
+      "configFiles": [
+        "package.json",
+        "jest.config.*",
+        "vitest.config.*"
+      ],
+      "cwd": ".",
+      "direction": null,
+      "fast": false,
+      "id": "node.test",
+      "kind": "invariant",
+      "lockfile": "package-lock.json",
+      "pack": "node",
+      "parser": null,
+      "parserArgs": null,
+      "scope": [
+        "."
+      ],
+      "title": "Unit tests"
+    },
+    {
+      "argv": [
+        "npx",
+        "tsc",
+        "--noEmit"
+      ],
+      "configFiles": [
+        "tsconfig.json"
+      ],
+      "cwd": ".",
+      "direction": null,
+      "fast": true,
+      "id": "node.typecheck",
+      "kind": "invariant",
+      "lockfile": "package-lock.json",
+      "pack": "node",
+      "parser": null,
+      "parserArgs": null,
+      "scope": [
+        "."
+      ],
+      "title": "Type check"
+    },
+    {
+      "argv": [
+        "npm",
+        "audit",
+        "--audit-level",
+        "high"
+      ],
+      "configFiles": [
+        "package-lock.json"
+      ],
+      "cwd": ".",
+      "direction": null,
+      "fast": true,
+      "id": "node.audit",
+      "kind": "invariant",
+      "lockfile": "package-lock.json",
+      "pack": "node",
+      "parser": null,
+      "parserArgs": null,
+      "scope": [
+        "."
+      ],
+      "title": "Dependency audit (high+)"
+    }
+  ],
+  "overrides": {},
+  "owned": {
+    ".claude/agents/archaeologist.md": "sha256:c54b68c2e3ff486e033a83b2ececd9063e247e2020ced87b5e774c8b7ec9f83e;mode:0644",
+    ".claude/agents/architect.md": "sha256:9932fca09076e90db9d906df55a54f5ad75c46e2e248e1f1494668f26ec7ff56;mode:0644",
+    ".claude/agents/diagnostician.md": "sha256:7f06f04dc65202139ce4d4bde7bf048066a4d90338b86ced4ccc25e0a1ca2cb1;mode:0644",
+    ".claude/agents/docs-scribe.md": "sha256:c4ed5354b8628acf6a838220e33432f14f2b30f54902e52fb5db4dfcda349101;mode:0644",
+    ".claude/agents/domain-guide.md": "sha256:6b535fd557b7d456814675853da1384ef0659e3476939584bcb1e0808c3951d3;mode:0644",
+    ".claude/agents/gatekeeper.md": "sha256:81b57dcc7e95dc907ff3a068ba45f47f9159311202fe9cd3793b488cbcb76d3f;mode:0644",
+    ".claude/agents/handoff-scribe.md": "sha256:e4c0bc298d8894343e7c94aabe4466534928d15d8bc62542052d481682334036;mode:0644",
+    ".claude/agents/implementer.md": "sha256:cab19e3e5e6d00147644a9282dd0e176d16e2757fea0f80c1ffe5ac6464beab6;mode:0644",
+    ".claude/agents/librarian.md": "sha256:8a8cb652ed20649663f3e4ab8bc9e9abe17332eb560e4cae347e9bffbc032eec;mode:0644",
+    ".claude/agents/operator.md": "sha256:fe5703bdcb200c7d3af5a4633ca0be7a0542da9040980987ee828909793b2058;mode:0644",
+    ".claude/agents/orchestrator.md": "sha256:a18f91f836622738d6cf95400c14dd64ebffbdcef7b525a28293a5d2038912db;mode:0644",
+    ".claude/agents/release-auditor.md": "sha256:55828817b2ab49425a1c10a9eb7b380de2c220d50cfa013f0ffaf141561f3d62;mode:0644",
+    ".claude/agents/researcher.md": "sha256:4e94c3b92fac3469f2e8375a52eb39c49aae9fa31501b6448ea15ffa1017d269;mode:0644",
+    ".claude/agents/reviewer.md": "sha256:693fc6f760044aed679ab11f67e14a33a66e7bfa872dffb675d21c1e139d4de8;mode:0644",
+    ".claude/agents/scout.md": "sha256:f60db2a55e4d8d8ab54ecd99ab4c822572468705faf0b692a481b745058d1467;mode:0644",
+    ".claude/agents/validator.md": "sha256:e229af8d9ff45a4922520c674606f47d95111924dc894aae4b3f785313be5193;mode:0644",
+    ".claude/settings.json": "sha256:d045974ce07ba3d49380b111ccd79ce64345bcbaf9d2ca050e076e29f12d8769;mode:0644",
+    ".github/CODEOWNERS": "sha256:5ea4c7075eabaeb74b324ea20abb24b6aeee0fe4cce9c7e26da90d95ad03b300;mode:0644",
+    ".github/workflows/sisu-gates.yml": "sha256:718e33614b46648150d2bbca3f7f688f1b56cbdc1507337cf6625ed956876ebc;mode:0644",
+    "CLAUDE.md": "sha256:a58503273b595edd696ffa09da7ada2ea8d9d79bd1fdf4164bb71ce78a35622c;mode:0644",
+    "harness/README.md": "sha256:f2fdfca2956c43f4f54e39a1792a1acc5ecbcfae068716a6847e49efe9c0dbe9;mode:0644",
+    "harness/agent-hooks/deny-tier0.mjs": "sha256:1b7ca4c1c2823a9249711ca28a39c78b486e909d64ddc7d49c7a36cde0c9c64a;mode:0755",
+    "harness/agent-hooks/protect-owned-paths.mjs": "sha256:c17fa574db023075f812be7364c465e6c73c8bbe235ce578fd002c17a1d4725d;mode:0755",
+    "harness/agent-hooks/session-start.mjs": "sha256:21323844358ffc2a7c37d412e08c4f39525948df14870de43d5cc675719fb0a3;mode:0755",
+    "harness/agent-hooks/shell-text.mjs": "sha256:3a53fe97e914a661e79e23abda449a3437665e2617d383bcc8e87bc311cc2805;mode:0755",
+    "harness/agent-hooks/verification-gate.mjs": "sha256:752050c302a9998009a182eaa6d9f22c9d72b85e77c11d5a4221c64d005f829b;mode:0755",
+    "harness/catalog.json": "sha256:0526fb3e79567dc6d5d49a95db36724ec2fda4e776ac9d7f53c47a110429bdba;mode:0644",
+    "harness/git-hooks/pre-push": "sha256:f6343d78129fb44a6af4522b84ae314ef916c3ebdc7dc9e9ae4a646ee0b6ea0c;mode:0755",
+    "harness/lib/frontmatter.mjs": "sha256:e2baa29fc9da272bd30fcf0fbf559aef56c629c43997190e97169a027734840d;mode:0644",
+    "harness/lib/hash.mjs": "sha256:964938a869b8db243fc7bdcc638bdc5a41197f4caeb87c9644c22c6e91c4eb78;mode:0644",
+    "harness/lib/identity.mjs": "sha256:47b8d9907c49434ad1ca705f66750464c87a4de0948a999b07ba0d0294e27ab8;mode:0644",
+    "harness/lib/knowledge.mjs": "sha256:aa97b509fe3bebf90e57fa1ccd28068c97aee55197bc6deda8c4e2bda1cce282;mode:0644",
+    "harness/lib/measure.mjs": "sha256:c96ded48d3cb0e2a474a4de2c01f60a874af9dfad88542dc81bec12b656d9361;mode:0644",
+    "harness/lib/yaml.mjs": "sha256:8a431f852bb80d0c4e47c9e33c5e162ac370b16898be4e0b664d66cc30e081b2;mode:0644",
+    "harness/scripts/capture.mjs": "sha256:9b796e90356b865d71cbf1479f738d5f59b29e9c78c5f2a7475340e9bcb8edc1;mode:0755",
+    "harness/scripts/cold-load-check.mjs": "sha256:95bebede24d5e7f110590b7ffbc53169aafeb0229f33851950ddd1e460e769d4;mode:0755",
+    "harness/scripts/common.mjs": "sha256:d63a48faa8105f99e686426637704d787f34b3e0de679168d413c7b52ba6fae2;mode:0755",
+    "harness/scripts/drift.mjs": "sha256:e891d610ebcd6ade85c40d4ffd53a978bc73bb9aa464db6e2d120d9ef4018430;mode:0755",
+    "harness/scripts/index.mjs": "sha256:cbabba6852cf654547fe08e13519cc6769cc60ebc1f274cbfbdc6540c09f1788;mode:0755",
+    "harness/scripts/ledger.mjs": "sha256:53d75122c79cd0aa81fb42d514f4dee7b3687feb2c71abd0bdb1be71177cd1c5;mode:0755",
+    "harness/scripts/pre-push.mjs": "sha256:d104bd0c357b461d93b2e19beeab132a86fcc76f773873c3c8659dec34479ec6;mode:0755",
+    "harness/scripts/promote.mjs": "sha256:44b2199bef66e9c144bb726a7a060370eb23a5906186bed8129ab6203b6f2af1;mode:0755",
+    "harness/scripts/ratchet.mjs": "sha256:144483d32335af891770fbc405eb8424f3e9ecbbda96ea8a2ff71ac004b8b36f;mode:0755",
+    "harness/scripts/setup-hooks.mjs": "sha256:580fb029ccc2b2a299bd50eabd23cd39aa928f2b8888498fe8b0645966951cee;mode:0755",
+    "harness/scripts/waiver.mjs": "sha256:3ef5eab4c364edfbd3559cafb152bffc3733c5438cac4eeeabf8a5526ac0aa46;mode:0755",
+    "harness/scripts/wire-remote.mjs": "sha256:28c751944566e9c022f97dc53f3866c9ac2911ebea86352eb614a764d4320cd2;mode:0755",
+    "harness/tests/agent-hooks.test.mjs": "sha256:a29174f7d2eddc2c89682e04af7a162bfdfc972a9bdcb0d5b0d0c3133ce26277;mode:0644",
+    "harness/tests/harness.test.mjs": "sha256:785aeb92988781f4aeb88893f345368822a2a7e0110364c9e5a011586c4ddbba;mode:0644"
+  },
+  "ownedPathsNote": "checksum = sha256 of LF-normalized content; mode recorded separately (0644|0755). Partial by design: symlinks refused, binaries not emitted.",
+  "packs": {
+    "node": "sha256:b34346800f64a04617e066f525d7fabcce0bcd590a1c5c8c4cef89f892dae5b9"
+  },
+  "projectSchema": 1,
+  "requiredCheck": "sisu / verdict",
+  "schema": "sisu.lock/1",
+  "strictPredicates": {
+    "evidence-fresh": {
+      "definition": "every remote-derived row has evidence.kind = observed and age <= 30 days",
+      "mechanisms": []
+    },
+    "no-conflicts": {
+      "definition": "no mechanism is in state conflict",
+      "mechanisms": []
+    },
+    "remote-wall": {
+      "definition": "effect = blocking AND plane IN (ci, repository, organization) AND bypassable-by >= repo-admin, for every installed mechanism tagged remote-wall",
+      "mechanisms": [
+        "ci.required-gates",
+        "ci.secret-scan",
+        "governance.agent-identity-separation",
+        "governance.branch-protection",
+        "governance.codeowners",
+        "governance.org-rulesets",
+        "governance.required-check-binding"
+      ]
+    },
+    "self-verification-green": {
+      "definition": "harness.self-verification last observed green on HEAD",
+      "mechanisms": [
+        "harness.self-verification"
+      ]
+    },
+    "topology-resolved": {
+      "definition": "none of the four topology facts is unknown",
+      "mechanisms": []
+    }
+  },
+  "targets": {
+    "claude-code": {
+      "agentHooks": [
+        "deny-tier0.mjs",
+        "protect-owned-paths.mjs",
+        "session-start.mjs",
+        "shell-text.mjs",
+        "verification-gate.mjs"
+      ],
+      "autoLoad": "native",
+      "contract": "2.1",
+      "eagerBudgetBytes": 24576,
+      "roles": [
+        "archaeologist",
+        "architect",
+        "diagnostician",
+        "docs-scribe",
+        "domain-guide",
+        "gatekeeper",
+        "handoff-scribe",
+        "implementer",
+        "librarian",
+        "operator",
+        "orchestrator",
+        "release-auditor",
+        "researcher",
+        "reviewer",
+        "scout",
+        "validator"
+      ],
+      "rootBytes": 18448,
+      "rootFile": "CLAUDE.md"
+    }
+  },
+  "writtenLast": true
+}

@@ -1,0 +1,251 @@
+# sisu v1 — design checkpoint (one batched checkpoint, per SPEC.md "How to work")
+
+## Status at build time (2026-10-03) — read this before trusting anything below
+
+Built and exercised on this machine (Windows 11, Node 24.11, git 2.52):
+
+- All 11 components exist and are wired: spine, ratchets, 16 roles, knowledge engine, ledger,
+  doctor (local + `--remote` via `gh api`, `--strict`, `--format=json`, `compare`), `init`,
+  stack packs (node, python, custom), `upgrade`, progressive disclosure, emitted self-verification.
+- Gate green at hand-off: `npm run gate` — tsc checkJs 0 errors, canonical lint OK, 66 generator
+  tests (thin slice, knowledge lifecycle, ratchets, pairwise matrix, attack families, extraction
+  map), 41 agent-hook behaviour tests. Emitted suite green in three repos (Node fixture, Python
+  fixture, sisu itself) and RED when a role file or cross-reference is deliberately broken.
+- Byte-identical re-emit verified on ONE machine (two output dirs; equals the initialized repo).
+
+Honestly NOT done or not verified:
+
+- **DoD #2 cold-agent run was not executed.** The Python second-domain project
+  (`D:/Code/.sisu-pyfixture`) was initialized and passes its emitted suite, but a cold agent
+  under an isolated `CLAUDE_CONFIG_DIR` has no credentials, so `harness/scripts/cold-load-check.mjs`
+  must be run by the owner (one-time login or API key in the temp config dir).
+- `doctor --remote` ran only against a mocked `gh` (status-spoofing / org-ruleset / CODEOWNERS
+  error shapes). Not yet pointed at a real GitHub repository.
+- Byte-reproducibility across the declared OS set (Linux) and a second machine: not run.
+- Dogfood is emitted from HEAD, not from a released tag (none exists yet). Tag `v0.1.0` and
+  re-emit before relying on it as a gate.
+- Declared v1 gap (in `extraction-map.yaml`, reported by `compare`): the GitHub expression-length
+  cap guard is not extracted.
+- `D:/Code/.sisu-fixture` and `D:/Code/.sisu-pyfixture` are throwaway fixtures left for
+  inspection; they are outside the repo and are not committed.
+
+**Superseded by the commit history:** this section originally recorded that nothing was
+committed to git. The implementation is now committed and the repository is published. The
+gate numbers quoted above are re-verified by `npm run gate` and reported in
+[README.md](README.md#status) — where that table and this narrative disagree, the command
+wins and the disagreement is the lesson.
+
+Status: **proceeding "as proposed"**. Every item below carries a recommended default and
+is implemented as stated. Revise any line and the thin slice is cheap to re-emit — that is
+why the thin slice comes first. Reference corpus pinned at Staffezee
+`b444f93efa24f4a6c20509d52e9c448775ef3760` (= `origin/dev` on 2026-10-03, merge of #666,
+2026-08-20); recorded in `extraction-map.yaml`.
+
+## 1. Generator implementation
+
+- **Language/runtime:** plain ESM JavaScript (`.mjs`) with JSDoc types, type-checked by
+  `tsc --checkJs` (`npm run check`). No build step. Node ≥ 20. **Zero runtime dependencies**
+  (dev: `typescript`, `@types/node`). Rationale: the emitted maintenance runtime is Node, so
+  the generator and its emitted scripts share one language and one vendored library set —
+  the `assets/lib/*.mjs` files are imported by the generator AND copied verbatim into
+  `harness/lib/`. Same parser, same bytes, no divergence.
+- **YAML:** a strict SUBSET parser (`assets/lib/yaml.mjs`, documented in
+  `canonical/schema/SCHEMA.md`). Unsupported YAML is a parse error, never approximated.
+  Unquoted `: ` in a plain scalar — the defect that silently killed two reference agents —
+  is a hard error.
+- **Tests:** `node:test`. Attack-family tests live beside the component they attack.
+
+## 2. Installed directory tree (consuming repo)
+
+```
+sisu.yaml                 intent file (hand-editable; `detected:` block machine-written)
+sisu.lock.json            generated manifest — the single lock; checksums live ONLY here
+harness/                  mechanism — sisu-owned, regenerated wholesale, checksummed
+  README.md               what this is, "do not edit; use overrides/"
+  lib/                    vendored runtime (yaml, frontmatter, hash) — identical to generator
+  scripts/                index, capture, promote, drift, ledger, ratchet, waiver,
+                          setup-hooks, cold-load-check (all repo-local, no sisu needed)
+  git-hooks/              tracked git hooks dir (core.hooksPath target)
+  agent-hooks/            agent-runtime hooks (Claude Code PreToolUse/PostToolUse/SessionStart)
+  tests/                  emitted self-verification suite (node:test, zero deps)
+  catalog.json            rendered enforcement catalog (for inspection without sisu)
+project/                  knowledge — user-owned, never touched by upgrade
+  knowledge/candidate/    agent-written facts (never loaded into context)
+  knowledge/active/       promoted facts (declarative, verification handle required)
+  knowledge/INDEX.md      generated by harness/scripts/index.mjs (owned by that script)
+  ledger/runs/            one file per run
+  waivers/                time-limited ratchet waivers
+  quality-baselines.json  ratchet baselines + measurement identities (gated path)
+  roles/domain-guide.md   scaffolded empty; the project fills it
+overrides/                whole-file replacements of CANONICAL SOURCES (not of emitted files)
+CLAUDE.md                 generated root convention file (claude-code target)
+AGENTS.md                 generated portable fallback (agents-md target)
+.claude/settings.json     generated hook wiring (claude-code target)
+.claude/agents/*.md       generated roles (claude-code target)
+.github/workflows/sisu-gates.yml   emitted required-check workflow
+.github/CODEOWNERS        emitted when absent (see §4 shared-file rule)
+```
+
+Rendered gate scripts (`harness/scripts/*.mjs`) are `0755`; everything else `0644`.
+
+## 3. Canonical granularity rule
+
+Canonical sources are SMALL: one mechanism, one rule, one role per file, under
+`canonical/{mechanisms,rules,roles}/`. Emitters COMPOSE them into large target files; the
+composition order and composed set are recorded per artifact in the graph
+(`composedFrom`). Override unit = canonical file. Argument recorded: a coarse tree turns a
+one-line customization into a fork of a whole document that forfeits every future canonical
+fix; small files keep stale-base warnings rare and precise.
+
+## 4. Ownership and mutation rules
+
+- The **owned write set** = `harness/**`, `sisu.lock.json`, `CLAUDE.md`, `AGENTS.md`,
+  `.claude/settings.json`, `.claude/agents/<role>.md` (sisu roles only), and
+  `.github/workflows/sisu-gates.yml`, plus `.github/CODEOWNERS` IF sisu created it.
+  Everything in the owned set is checksummed (content after LF normalization, mode bit
+  recorded separately — disclosed in the manifest schema). Symlinks anywhere in the owned set
+  are refused; paths traversing outside the repo are refused.
+- **Shared-file rule (no merge, ever — directive 6):** if a path in the owned set already
+  exists at first emit and is not sisu-owned, emit REFUSES that path, writes nothing to it,
+  and records state `conflict` for its mechanism in doctor (reason: pre-existing file). The
+  user moves content into `overrides/`/`project/` and re-emits. Brownfield `adopt` is
+  designed for this and not built.
+- `project/**` and `overrides/**` are never written by `emit`/`upgrade` after `init`
+  scaffolds them (init writes only into empty locations).
+- `upgrade` refuses to run while any owned path is dirty vs the manifest; the manifest is
+  written LAST.
+
+## 5. Emitter purity and committed target constants
+
+Emitters are pure functions of (graph node, target contract version). No clock, no
+environment, no installed-tool probing. Target knowledge is a committed constant table in
+`src/targets.mjs`, keyed by contract version:
+
+| target | contract | constants |
+|---|---|---|
+| `claude-code` | `2.1` | root file `CLAUDE.md`; agents dir `.claude/agents/`; settings `.claude/settings.json`; hook protocol: JSON stdin, exit 0 allow / exit 2 block; default command-hook timeout 600 s; `CLAUDE_CONFIG_DIR` relocates user config, workspace `.claude/settings.local.json` still applies; AGENTS.md needs `@AGENTS.md` import shim; eager-context budget 24 KiB |
+| `agents-md` | `1` | root file `AGENTS.md`; Codex combined cap 32 KiB (silent truncation) → emitted cap 28 KiB; auto-load status per tool: Codex/Copilot/Cursor/Amp/Zed `observed`; Gemini CLI `needs-config`; Aider `advisory`; Claude Code `needs-import-shim` |
+
+Line endings LF, paths POSIX, mode bits from the graph — never from `process.platform`.
+Oracle: the byte-reproducibility test (emit twice into two directories, compare bytes).
+
+## 6. Product contract (recorded in the manifest, reported by doctor)
+
+| axis | value |
+|---|---|
+| OS set | `windows`, `linux` (tested here on Windows; CI on ubuntu). `macos` = `untested`, degrades loudly |
+| git host | `github` only |
+| CI provider | `github-actions` only |
+| emitted maintenance runtime | `node` ≥ 20, must already be on PATH or `init` fails loudly |
+| application stack packs | `node`, `python`, `custom` (declare-your-own) |
+| targets | `claude-code` (full fidelity), `agents-md` (fallback) |
+
+Any other combination is `unsupported` and reported as such. Python-native script emission
+is a declared `unsupported` combination.
+
+## 7. SCM / CI / offline behaviour
+
+- No network from `sisu` or anything it emits, except `doctor --remote` (read-only `gh api`
+  against the user's own host) and the emitted wiring scripts, which only the user runs and
+  which print intended mutations first. Offline, every remote-derived row is `unknown`.
+- `doctor` is never emitted into a consuming repo's CI. `doctor --format=json` serves sisu's
+  own CI and human diffing. Downstream posture-in-CI = the emitted self-verification suite.
+- Emitted CI: one workflow `sisu-gates.yml` with an always-on cheap job (secret scan +
+  docs-only classifier + governance literals), heavy gate job(s) skipped ONLY by job-level
+  `if:` on a proven docs-only diff with fail-safe-toward-running semantics, an aggregator
+  named `sisu / gates` under `always()` inspecting `needs.*.result` explicitly, `merge_group`
+  declared, third-party actions pinned to full SHAs.
+
+## 8. Enforcement-model catalog
+
+Every mechanism is a canonical file with the tuple (effect, plane, bypassable-by, evidence
+probe), lifecycle state, fail-mode (for hooks), claimed coverage set, install requirements,
+and strict-predicate membership. Rendered as `harness/catalog.json`. Ids are stable; retire
+only via `deprecated`. The full list is `canonical/mechanisms/` (~30 entries). Repo-managed
+git hooks and agent-runtime hooks are always `preventive` / `bypassable-by: workspace-write`
+and never satisfy a strict floor.
+
+**Named `--strict` predicates (fixed set in the manifest schema):**
+
+| predicate | definition |
+|---|---|
+| `remote-wall` | effect = blocking ∧ plane ∈ {ci, repository, organization} ∧ bypassable-by ≥ repo-admin, for every mechanism tagged `strict: [remote-wall]` |
+| `evidence-fresh` | every remote-derived row has evidence.kind = observed and age ≤ 30 days |
+| `self-verification-green` | `harness.self-verification` last observed green on HEAD |
+| `topology-resolved` | none of the four topology facts is `unknown` |
+| `no-conflicts` | no mechanism in state `conflict` |
+
+Evaluated per target; one strong target must not mask a weaker one.
+
+## 9. `doctor` JSON contract and CI boundary
+
+`doctor --format=json` emits `{ schema: "sisu.doctor/1", generator, project, target rows[], predicates, knowledge, waivers, volatile: { observedAt, durations, runIds } }`.
+Field order is stable; volatile fields are segregated under `volatile`. JSON Schema shipped at
+`src/schemas/doctor.schema.json`. Exit codes: 0 ok, 1 strict floor unmet, 2 error.
+
+## 10. `detected:` provenance
+
+`init` writes findings under `detected:` in `sisu.yaml`: each finding is
+`{ value, evidence: detected|unknown, at: <HEAD sha or "no-commit">, inputs-digest }` where
+inputs-digest is sha256 over the manifest/lockfile/config paths the probe read — a PARTIAL
+digest, labelled `partial`. `doctor` re-runs detection and diffs (`local.detected-staleness`).
+A hand edit inside `detected:` (value differs from re-detection with no `override-reason`)
+is reported as an unaudited policy change.
+
+## 11. Version axes and compatibility
+
+Three axes: generator version (`package.json`), project schema version (`sisu.yaml` →
+`schema: 1`), target contract version (manifest). Project schema older than the generator
+supports → `upgrade` STOPS with a migration path. Target contract drift → loud degradation.
+Packs and the catalog ship with the generator; the manifest records each pack's content hash
+as audit data.
+
+## 12. Override and upgrade semantics
+
+- `overrides/<kind>/<id>.md` replaces the canonical source of the same path. Whole-file only.
+  Frontmatter must carry `based-on-canonical-hash: sha256:<hex of canonical content>`.
+- Applied exactly once, by the resolver. Collision rule: an override whose canonical
+  counterpart no longer exists → `stale (orphan)`; whose canonical hash changed →
+  `stale (base changed)`. Both are reported by `upgrade` and `doctor`; stale overrides are
+  still applied (the user's intent stands) but flagged.
+- `upgrade`: refuse on dirty owned paths; regenerate the owned set; manifest written last; an
+  interrupted run leaves a detectable manifest/checksum mismatch. No transaction layer;
+  `git checkout -- <owned paths>` is the rollback.
+
+## 13. Knowledge-loop kill criteria and health thresholds
+
+Recorded in `sisu.yaml` under `policy.knowledge` and rendered by doctor:
+- **loop-dead threshold:** ≥ 20 candidates older than 30 days AND promotion rate < 5 % over
+  the last 60 days ⇒ doctor row `knowledge.loop` = `DEAD (kill criterion met)`. Designed
+  retreat: collapse to a single human-curated tier (`active/` only; `candidate/` archived).
+- health rows: candidate count + age distribution, promotion rate, overdue re-verifications
+  (verified-at older than `reverify-days: 90` or subject hash changed), active waivers with
+  days remaining, detected-findings staleness.
+- eager context budget: 24 KiB (claude-code), 28 KiB (agents-md); `index` fails loudly over it.
+
+## 14. Acceptance-matrix plan (pairwise with two full-coverage exceptions)
+
+Cheap universal properties across the full matrix (2 targets × 3 profiles × 3 packs): emits
+cleanly, self-verification passes, byte-identical re-emit. Deep suites on one representative
+cell per axis: ratchets, knowledge lifecycle, override/checksum state, upgrade refusals.
+Full coverage for `doctor --strict` per target and omission-with-reason rendering per
+profile. Implemented in `test/matrix.test.mjs`.
+
+## 15. Schemas and state machines
+
+- **Intent file** (`sisu.yaml`): see `canonical/schema/SCHEMA.md` §Intent.
+- **Manifest** (`sisu.lock.json`): see SCHEMA.md §Manifest.
+- **Fact** frontmatter + **verification handle** (closed set `oracle-id | command | test-name
+  | file-anchor | none`) + **edge types** (`supersedes, contradicts, depends-on, verified-by,
+  applies-to, caused-by`) with their direction/propagation/promotion semantics: SCHEMA.md
+  §Knowledge. State machine: `candidate → active` (promotion), `active → superseded`
+  (via `supersedes` edge), `active → stale` (drift tripwire), `stale → active` (re-verify).
+- **Ratchet metric**: `{ id, direction: ceiling|floor, baseline, identity: { argv, cwd,
+  config-files, scope, lockfile }, identity-hash }`. Transitions: tighten (free), identity
+  change (requires explicit `--rebaseline`, gated file edit), loosen (waiver only).
+- **Waiver**: `{ metric, raise-to, reason, approver: { value, evidence-level }, expires }`.
+  Expired ⇒ hard fail.
+- **Ledger entry**: `{ run-id, started, ended, agent: {value, evidence-level},
+  approval: {value, evidence-level}, commits: {before, after}, gates: [{ oracle-id,
+  subject-hash, verdict, ci-run: {url, evidence-level} }], knowledge: {captured, promoted},
+  summary }`.

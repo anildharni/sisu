@@ -1,0 +1,9 @@
+# The product contract declares LF line endings and the owned-path checksums
+# are computed after LF normalization. Without this, a clone on Windows gets
+# CRLF in the working tree and harness.owned-checksums reports every emitted
+# file as hand-edited.
+* text=auto eol=lf
+
+# Binary-ish: never touch.
+*.png binary
+*.ico binary

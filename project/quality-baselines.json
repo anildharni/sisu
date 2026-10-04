@@ -1,0 +1,5 @@
+{
+  "_note": "Ceilings only fall, floors only rise. identity-hash binds argv/cwd/scope/config/lockfile (PARTIAL). Re-baseline explicitly: node harness/scripts/ratchet.mjs --rebaseline <id>. This file is a gated path.",
+  "metrics": {},
+  "schema": "sisu.baselines/1"
+}
